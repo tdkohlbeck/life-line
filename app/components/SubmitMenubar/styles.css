@@ -1,0 +1,15 @@
+.form {
+  display: block;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: pink;
+  padding: 5px;
+}
+
+span {
+  padding: 0px 10px;
+}
+
+.input {
+}
