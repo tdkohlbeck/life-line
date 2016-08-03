@@ -1,22 +1,17 @@
 import React from 'react';
 
+import CurrentTimeDisplay from 'components/CurrentTimeDisplay';
+
 import styles from './styles.css';
 
 function SubmitMenubar(props) {
-  const getTime = () => {
-    let time = new Date();
-    return (
-      //`${time.getHours()}:${time.getMinutes()}`
-      time.toLocaleTimeString()
-    );
-  }
   return (
     <form
       className={styles.form}
       onSubmit={props.formOnSubmit}
     >
       <label htmlFor="datumName">
-        <span>{getTime()}</span>
+        <CurrentTimeDisplay />
         <input
           className={styles.input}
           id="datumName"

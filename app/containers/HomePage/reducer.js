@@ -5,7 +5,7 @@ import {
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
-  datumName: 'bravo!',
+  datumName: '',
 });
 
 function homeReducer(state = initialState, action) {
