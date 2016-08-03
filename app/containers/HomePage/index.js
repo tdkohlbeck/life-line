@@ -15,20 +15,35 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import {
+  selectData,
+} from '../App/selectors';
+
+import {
   selectDatumName,
 } from './selectors';
 
 import {
-  submitDatum,
+  addDatum,
+} from '../App/actions';
+
+
+import {
+  changeDatumName,
 } from './actions';
 
+
 import SubmitMenubar from 'components/SubmitMenubar';
+import DatumList from 'components/DatumList';
 
 export class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
+    console.log('<3 returning HomePage.render()!');
     return (
       <div>
+        <DatumList
+          data={this.props.data}
+        />
         <SubmitMenubar
           datumName={this.props.datumName}
           formOnSubmit={this.props.formOnSubmit}
@@ -40,24 +55,25 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
 }
 
 HomePage.propTypes = {
+  /*data: React.PropTypes.array,*/
   datumName: React.PropTypes.string,
   formOnSubmit: React.PropTypes.func,
+  inputOnChange: React.PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
+  console.log(`<3 returning mapDispatchToProps(${dispatch})`);
   return {
     formOnSubmit: (evt) => {
       if (evt !== undefined && evt.preventDefault) {
         evt.preventDefault();
-        console.log(evt.target);
       }
-      dispatch(submitDatum(evt.target.value));
+      dispatch(addDatum());
+      //console.log(`<3 ending formOnSubmit after \ndispatch(addDatum());`);
     },
     inputOnChange: (evt) => {
-      if (evt !== undefined && evt.preventDefault) {
-        evt.preventDefault();
-      }
-      dispatch(submitDatum(evt.target.value));
+      dispatch(changeDatumName(evt.target.value));
+      //console.log(`<3 ending inputOnChange(<evt> ${evt}) after\ndispatch(changeDatumName(evt.target.value));`);
     },
     dispatch,
   };
@@ -65,17 +81,10 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   datumName: selectDatumName(),
+  data: selectData(),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(HomePage);
-
-// 2. ******************************************************
-// Here we have the container for our homepage component
-// (which is just <SubmitMenubar /> for the time being)!
-// We are importing the only function from selectors.js,
-// and storing it in mapStateToProps on line 63, which is
-// then passed to connect() on line 66. State *should* be
-// assigned in reducer.js, the file to the right

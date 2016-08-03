@@ -1,3 +1,13 @@
+// containers/App/selectors.js
+import { createSelector } from 'reselect';
+
+const selectGlobal = () => (state) => state.get('global');
+
+const selectData = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.get('data')
+);
+
 // selectLocationState expects a plain JS object for the routing state
 const selectLocationState = () => {
   let prevRoutingState;
@@ -16,5 +26,7 @@ const selectLocationState = () => {
 };
 
 export {
+  selectGlobal,
+  selectData,
   selectLocationState,
 };

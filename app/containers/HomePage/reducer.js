@@ -1,5 +1,5 @@
 import {
-  SUBMIT_DATUM,
+  CHANGE_DATUM_NAME,
 } from './constants';
 
 import { fromJS } from 'immutable';
@@ -10,7 +10,7 @@ const initialState = fromJS({
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
-    case SUBMIT_DATUM:
+    case CHANGE_DATUM_NAME:
       return state
         .set('datumName', action.datumName);
     default:

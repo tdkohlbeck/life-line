@@ -1,1 +1,2 @@
-export const SUBMIT_DATUM = 'lifeline/Home/SUBMIT_DATUM';
+export const ADD_DATUM = 'lifeline/Home/ADD_DATUM';
+export const CHANGE_DATUM_NAME = 'lifeline/Home/CHANGE_DATUM_NAME';

@@ -1,12 +1,19 @@
 import {
-  SUBMIT_DATUM,
+  ADD_DATUM,
+  CHANGE_DATUM_NAME,
 } from './constants';
 
-export function submitDatum(datumName) {
-  alert(datumName);
+export function addDatum(datumName) {
   return {
-    type: SUBMIT_DATUM,
+    type: ADD_DATUM,
     datumName,
     time: Date.now(),
   };
+}
+
+export function changeDatumName(datumName) {
+  return {
+    type: CHANGE_DATUM_NAME,
+    datumName,
+  }
 }
